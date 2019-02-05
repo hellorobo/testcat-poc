@@ -1,0 +1,24 @@
+---
+global:
+  owner: robert.jakowenko@nordcloud.com
+  qsname: testcat-poc
+  regions:
+    - eu-west-1
+    - us-east-1
+  reporting: true
+tests:
+  scenario-1:
+    parameter_input: scenario-1-params.json
+    regions:
+      - eu-west-1
+    template_file: 025-ec2image.yaml
+  scenario-2:
+    parameter_input: scenario-2-params.json
+    regions:
+      - us-east-1
+    template_file: 025-ec2image.yaml
+  scenario-3:
+    parameter_input: scenario-2-params.json
+    regions:
+      - eu-central-1
+    template_file: 025-ec2image.yaml

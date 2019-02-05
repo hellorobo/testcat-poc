@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: This template deploys EC2 instances
+
+Metadata:
+  Author: Robert Jakowenko <robert.jakowenko@nordcloud.com>
+
+Parameters:
+
+  InstanceType: 
+    Description: instance type
+    Type: String
+  InstanceImage:
+    Description: image id
+    Type: AWS::EC2::Image::Id
+
+Resources:
+
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref InstanceImage
+      InstanceType: !Ref InstanceType
+      UserData: !Base64 |
+        #!/bin/bash
+        export LC_ALL=C
+        yum update -y
+        yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm -E '%{rhel}').noarch.rpm
+        yum install -y https://centos7.iuscommunity.org/ius-release.rpm
+        yum install -y wget python36u python36u-pip
+        ln -s /usr/bin/python3.6 /usr/bin/python3
+        ln -s /usr/bin/pip3.6 /usr/bin/pip3
+        
+        pip3 install virtualenv boto3
+        pip3 install awscli --upgrade
+
+      Tags:
+        - Key: Name
+          Value: Test-image-1.1
+

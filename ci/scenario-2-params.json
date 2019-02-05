@@ -1,0 +1,7 @@
+[{
+    "ParameterKey": "InstanceImage",
+    "ParameterValue": "ami-011b3ccf1bd6db744"
+}, {
+    "ParameterKey": "InstanceType",
+    "ParameterValue": "t2.micro"
+}]
