@@ -17,8 +17,3 @@ tests:
     regions:
       - us-east-1
     template_file: 025-ec2image.yaml
-  scenario-3:
-    parameter_input: scenario-2-params.json
-    regions:
-      - eu-central-1
-    template_file: 025-ec2image.yaml
